@@ -24,7 +24,7 @@ struct Light
 void Light_Setup(struct Light*, int, int);
 void Light_add_Source(struct Light*, struct Source);
 void Light_Source_Produce(int, int, int, int, struct Light*, struct Source);
-void Light_Draw(int screenWidth, int screenHeight, struct Light*);
+void Light_Draw(struct Light*, int, int);
 
 void Light_Setup(struct Light* light_ptr, int h, int w)
 {
@@ -99,7 +99,7 @@ void Light_Source_Produce(int range, int y_axis, int x_axis, int brightness, str
     return;
 }
 
-void Light_Draw(int screenWidth, int screenHeight, struct Light* light_ptr)
+void Light_Draw(struct Light* light_ptr, int screenWidth, int screenHeight)
 {
     struct Light light = *light_ptr;
     double Pixel_Grid_Height = screenHeight / light.grid_height;

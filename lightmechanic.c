@@ -20,7 +20,7 @@ int main()
     {
         BeginDrawing();
             ClearBackground(BLACK);
-            Light_Draw(screenWidth, screenHeight, &light);
+            Light_Draw(&light, screenWidth, screenHeight);
         EndDrawing();
     }
 
