@@ -12,15 +12,16 @@ int main()
     SetTargetFPS(SETFPS);
 
     struct Light light;
-    Light_Setup(&light, 20, 20);
-    Light_add_Source(&light, (struct Source){10, 10, 5, RED});
-    Light_add_Source(&light, (struct Source){15, 10, 4, BLUE});
+    Light_Setup(&light, screenHeight / 10, screenWidth / 10, 10, 10);
+    Light_add_Source(&light, (struct Source){4, 3, 3, RED});
+    Light_add_Source(&light, (struct Source){4, 6, 3, WHITE});
+    Light_remove_Source(&light, (struct Source){4, 6, 3, WHITE});
 
     while(!WindowShouldClose())
     {
         BeginDrawing();
             ClearBackground(BLACK);
-            Light_Draw(&light, screenWidth, screenHeight);
+            Light_Draw(&light, 0, 0);
         EndDrawing();
     }
 
