@@ -40,12 +40,12 @@ struct Light                        //main struct for light
 
 void Light_Setup(struct Light*, int, int, int, int);                                    //constructs data in Light
 void Light_add_Source(struct Light*, struct Source);                                    //creates a light source in Light
-void Light_Source_Produce(int, int, int, int, struct Light*, struct Source, bool);      //this creates the glow from the light source
+void Light_Source_Produce(int, int, int, int, struct Light*, struct Source, bool);      //this creates/removes the glow from the light source
 void Light_Draw(struct Light*, int, int);                                               //draws the Grid relative to x and y positions
-void Light_remove_Source(struct Light*, struct Source);
-bool is_equal(struct Light, struct Source, int);
+void Light_remove_Source(struct Light*, struct Source);                                 //removes a light source in Light
+bool Light_is_equal(struct Light, struct Source, int);                                  //special function for comparing light array and a source
 
-bool is_equal(struct Light light, struct Source source, int index)
+bool Light_is_equal(struct Light light, struct Source source, int index)
 {
     return (light.source[index].x == source.x && light.source[index].y == source.y && light.source[index].range == source.range &&
             light.source[index].color.r == source.color.r && light.source[index].color.g == source.color.g &&
@@ -160,13 +160,13 @@ void Light_Draw(struct Light* light_ptr, int pos_X, int pos_Y)
                          (Color){light.Grid[h][w].color.r, light.Grid[h][w].color.g, light.Grid[h][w].color.b, light.Grid[h][w].brightness});
 }
 
-void Light_remove_Source(struct Light *light_ptr, struct Source source)
+void Light_remove_Source(struct Light *light_ptr, struct Source source) 
 {
     struct Light light = *light_ptr;
 
     for(int i = 0; i < light.sourceSize; i++)
     {
-        if(is_equal(light, source, i))
+        if(Light_is_equal(light, source, i))
         {
             for(int n = i; n < light.sourceSize - 1; n++)
                 light.source[n] = light.source[n + 1];
