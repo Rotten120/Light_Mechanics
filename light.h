@@ -38,6 +38,7 @@ struct Light                        //main struct for light
     int pixel_grid_width;                                           //width of each grid
 };
 
+//function declaration
 void Light_Setup(struct Light*, int, int, int, int);                                    //constructs data in Light
 void Light_add_Source(struct Light*, struct Source);                                    //creates a light source in Light
 void Light_Source_Produce(int, int, int, int, struct Light*, struct Source, bool);      //this creates/removes the glow from the light source
@@ -45,6 +46,7 @@ void Light_Draw(struct Light*, int, int);                                       
 void Light_remove_Source(struct Light*, struct Source);                                 //removes a light source in Light
 bool Light_is_equal(struct Light, struct Source, int);                                  //special function for comparing light array and a source
 
+//function definition
 bool Light_is_equal(struct Light light, struct Source source, int index)
 {
     return (light.source[index].x == source.x && light.source[index].y == source.y && light.source[index].range == source.range &&
