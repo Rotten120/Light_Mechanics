@@ -46,6 +46,8 @@ void Light_Draw(struct Light*, int, int);                                       
 void Light_remove_Source(struct Light*, struct Source);                                 //removes a light source in Light
 bool Light_is_equal(struct Light, struct Source, int);                                  //special function for comparing light array and a source
 
+
+
 //function definition
 bool Light_is_equal(struct Light light, struct Source source, int index)
 {
